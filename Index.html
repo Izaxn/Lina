@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minks by Lina | Carolina's Beauty Boutique</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --pink: #e8a0b0;
+    --rose: #c9687e;
+    --blush: #f5dde4;
+    --cream: #fdf6f8;
+    --light: #fef9fb;
+    --text: #1a1a1a;
+    --muted: #7a6a6e;
+    --gold: #c9a87a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── FLOATING LASHES BACKGROUND ── */
+  .lash-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .lash-particle {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0.07;
+    animation: floatLash linear infinite;
+    user-select: none;
+  }
+  @keyframes floatLash {
+    0%   { transform: translateY(110vh) rotate(0deg); opacity:0; }
+    10%  { opacity: 0.07; }
+    90%  { opacity: 0.07; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity:0; }
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(232,160,176,0.15);
+  }
+  .nav-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: var(--pink);
+    letter-spacing: 1px;
+  }
+  .nav-right { display:flex; align-items:center; gap:18px; }
+  .nav-book-btn {
+    background: linear-gradient(135deg, var(--rose), var(--pink));
+    color: #fff;
+    border: none; cursor: pointer;
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-book-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(201,104,126,0.45); }
+
+  /* hamburger / admin trigger */
+  .hamburger {
+    background: none; border: none; cursor: pointer;
+    display:flex; flex-direction:column; gap:5px; padding:4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--pink); border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .hamburger:hover span { background: var(--rose); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index:1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 24px 60px;
+  }
+  .hero-logo {
+    width: min(320px, 75vw);
+    border-radius: 50%;
+    box-shadow: 0 0 80px rgba(232,160,176,0.35), 0 0 160px rgba(201,104,126,0.15);
+    animation: pulse 4s ease-in-out infinite;
+    margin-bottom: 32px;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 60px rgba(232,160,176,0.3), 0 0 120px rgba(201,104,126,0.12); }
+    50%      { box-shadow: 0 0 100px rgba(232,160,176,0.5), 0 0 200px rgba(201,104,126,0.22); }
+  }
+  .hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+  .hero-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.2rem, 9vw, 6rem);
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 40px rgba(232,160,176,0.4);
+  }
+  .hero-sub {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    color: var(--pink);
+    margin-bottom: 28px;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(253,246,248,0.6);
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+  }
+  .hero-cta {
+    background: linear-gradient(135deg, var(--rose), var(--pink));
+    color: #fff; border: none; cursor: pointer;
+    padding: 14px 42px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; font-weight:500;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 8px 32px rgba(201,104,126,0.4);
+  }
+  .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(201,104,126,0.55); }
+
+  /* ── SECTION COMMONS ── */
+  section { position:relative; z-index:1; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
+  .section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    text-align: center;
+    margin-bottom: 12px;
+    color: var(--pink);
+  }
+  .section-rule {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    margin: 0 auto 48px;
+  }
+
+  /* ── ABOUT ── */
+  .about-section { background: var(--deep); }
+  .about-card {
+    background: rgba(232,160,176,0.06);
+    border: 1px solid rgba(232,160,176,0.15);
+    border-radius: 24px;
+    padding: 44px 40px;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content:''; position:absolute; inset:-1px;
+    border-radius:24px;
+    background: linear-gradient(135deg, rgba(232,160,176,0.2), transparent 60%);
+    pointer-events:none;
+  }
+  .about-card p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: rgba(253,246,248,0.82);
+    font-style: italic;
+  }
+  .about-card .about-handle {
+    margin-top: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    color: var(--pink);
+    text-transform: uppercase;
+  }
+  .about-badges {
+    display: flex; flex-wrap:wrap; justify-content:center; gap:12px;
+    margin-top: 28px;
+  }
+  .badge {
+    background: rgba(232,160,176,0.1);
+    border: 1px solid rgba(232,160,176,0.25);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+  }
+
+  /* ── SERVICES / PRICING ── */
+  .pricing-section { background: var(--black); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .pricing-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(232,160,176,0.14);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(232,160,176,0.4);
+  }
+  .pricing-cat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(232,160,176,0.15);
+  }
+  .pricing-item {
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pricing-item:last-child { border:none; }
+  .pricing-item-name { font-size:1rem; color: rgba(253,246,248,0.85); }
+  .pricing-item-price {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.4rem;
+    color: var(--pink);
+  }
+  .book-service-btn {
+    display:block; width:100%; margin-top:20px;
+    background: transparent;
+    border: 1px solid rgba(232,160,176,0.3);
+    color: var(--pink);
+    padding: 10px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .book-service-btn:hover { background: var(--rose); color:#fff; border-color: var(--rose); }
+
+  /* ── MY WORK GALLERY ── */
+  .gallery-section { background: var(--deep); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    position: relative;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width:100%; height:100%; object-fit:cover;
+    transition: transform 0.5s ease;
+    filter: brightness(0.92) saturate(1.1);
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(201,104,126,0.45) 0%, transparent 60%);
+    opacity:0; transition:opacity 0.3s;
+    display:flex; align-items:flex-end; justify-content:center;
+    padding-bottom: 18px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity:1; }
+  .gallery-overlay span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.4rem;
+    color:#fff;
+  }
+
+  /* ── POLICIES ── */
+  .policy-section { background: var(--black); }
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .policy-card {
+    background: linear-gradient(135deg, rgba(232,160,176,0.07), rgba(201,104,126,0.04));
+    border: 1px solid rgba(232,160,176,0.15);
+    border-radius: 20px;
+    padding: 32px 28px;
+  }
+  .policy-icon { font-size: 2rem; margin-bottom: 14px; }
+  .policy-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: var(--pink);
+    margin-bottom: 12px;
+  }
+  .policy-text {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: rgba(253,246,248,0.72);
+    font-style: italic;
+  }
+
+  /* ── AFTERCARE ── */
+  .aftercare-section { background: var(--deep); }
+  .aftercare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 20px;
+  }
+  .aftercare-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(232,160,176,0.12);
+    border-radius: 18px;
+    padding: 26px 22px;
+    text-align: center;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .aftercare-card:hover { border-color: rgba(232,160,176,0.38); transform:translateY(-4px); }
+  .aftercare-icon { font-size: 2rem; margin-bottom: 12px; }
+  .aftercare-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.35rem;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+  .aftercare-text {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(253,246,248,0.65);
+  }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--black); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .review-card {
+    background: rgba(232,160,176,0.05);
+    border: 1px solid rgba(232,160,176,0.13);
+    border-radius: 20px;
+    padding: 28px 26px;
+    position: relative;
+  }
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+  .review-text {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(253,246,248,0.78);
+    margin-bottom: 16px;
+  }
+  .review-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.3rem;
+    color: var(--pink);
+  }
+  .quote-mark {
+    position:absolute; top:16px; right:20px;
+    font-size: 4rem;
+    color: rgba(232,160,176,0.08);
+    line-height:1;
+    font-family: Georgia, serif;
+  }
+
+  /* ── PAYMENT / BOOKING INFO BANNER ── */
+  .payment-banner {
+    background: linear-gradient(135deg, rgba(201,104,126,0.15), rgba(232,160,176,0.08));
+    border-top: 1px solid rgba(232,160,176,0.15);
+    border-bottom: 1px solid rgba(232,160,176,0.15);
+  }
+  .payment-inner {
+    max-width: 900px; margin: 0 auto;
+    padding: 32px 24px;
+    display: flex; flex-wrap:wrap; gap:20px;
+    align-items: center; justify-content: center; text-align:center;
+  }
+  .payment-item {
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    min-width: 140px;
+  }
+  .payment-item span:first-child { font-size: 1.6rem; }
+  .payment-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color: var(--muted);
+  }
+  .payment-value {
+    font-family: 'Great Vibes', cursive;
+    font-size:1.3rem;
+    color: var(--pink);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position:relative; z-index:1;
+    background: #050505;
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(232,160,176,0.1);
+  }
+  .footer-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.4rem;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+  .footer-handle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .footer-note {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.25);
+    font-style: italic;
+  }
+
+  /* ── BOTTOM BOOK CTA ── */
+  .bottom-cta {
+    position:relative; z-index:1;
+    text-align:center;
+    padding: 60px 24px;
+    background: linear-gradient(180deg, var(--deep) 0%, var(--black) 100%);
+  }
+  .bottom-cta-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .bottom-cta p {
+    color: rgba(253,246,248,0.6);
+    font-style:italic;
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+
+  /* ── BOOKING MODAL ── */
+  .modal-overlay {
+    display:none; position:fixed; inset:0; z-index:2000;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open { display:flex; }
+  .modal {
+    background: #141414;
+    border: 1px solid rgba(232,160,176,0.25);
+    border-radius: 28px;
+    padding: 40px 36px;
+    width: min(500px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    position:relative;
+  }
+  .modal-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.4rem;
+    color: var(--pink);
+    margin-bottom: 6px;
+    text-align:center;
+  }
+  .modal-sub {
+    text-align:center;
+    font-size:0.85rem;
+    color: var(--muted);
+    font-style:italic;
+    margin-bottom: 28px;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display:block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 7px;
+  }
+  .form-group input,
+  .form-group select {
+    width:100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,160,176,0.2);
+    border-radius: 10px;
+    padding: 11px 16px;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    outline:none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus { border-color: var(--rose); }
+  .form-group select option { background:#1a1a1a; }
+  .submit-btn {
+    width:100%;
+    background: linear-gradient(135deg, var(--rose), var(--pink));
+    border:none; color:#fff; cursor:pointer;
+    padding: 14px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight:500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { opacity:0.9; transform:translateY(-2px); }
+  .modal-close {
+    position:absolute; top:16px; right:20px;
+    background:none; border:none; color:var(--muted);
+    font-size:1.4rem; cursor:pointer; line-height:1;
+  }
+  .modal-close:hover { color:#fff; }
+  .deposit-note {
+    text-align:center;
+    font-size:0.8rem;
+    color: var(--muted);
+    font-style:italic;
+    margin-top:14px;
+  }
+  .success-msg {
+    display:none;
+    text-align:center;
+    padding: 20px;
+  }
+  .success-msg .check { font-size:3rem; margin-bottom:12px; }
+  .success-msg h3 {
+    font-family:'Great Vibes',cursive;
+    font-size:2rem;
+    color: var(--pink);
+    margin-bottom:8px;
+  }
+  .success-msg p { color:rgba(255,255,255,0.6); font-style:italic; }
+
+  /* ── ADMIN CODE MODAL ── */
+  .code-modal-overlay {
+    display:none; position:fixed; inset:0; z-index:3000;
+    background:rgba(0,0,0,0.92);
+    backdrop-filter:blur(12px);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .code-modal-overlay.open { display:flex; }
+  .code-modal {
+    background: #111;
+    border: 1px solid rgba(232,160,176,0.3);
+    border-radius:24px;
+    padding: 40px 32px;
+    width:min(380px,100%);
+    text-align:center;
+    position:relative;
+  }
+  .code-modal h2 {
+    font-family:'Great Vibes',cursive;
+    font-size:2rem;
+    color:var(--pink);
+    margin-bottom:8px;
+  }
+  .code-modal p {
+    font-size:0.85rem;
+    color:var(--muted);
+    font-style:italic;
+    margin-bottom:24px;
+  }
+  .code-inputs {
+    display:flex; gap:10px; justify-content:center; margin-bottom:24px;
+  }
+  .code-inputs input {
+    width:48px; height:56px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(232,160,176,0.2);
+    border-radius:12px;
+    text-align:center;
+    font-size:1.5rem;
+    color:#fff;
+    outline:none;
+    font-family:'Cormorant Garamond',serif;
+    transition:border-color 0.2s;
+  }
+  .code-inputs input:focus { border-color:var(--rose); }
+  .code-error { color:#e87a8a; font-size:0.8rem; margin-bottom:12px; display:none; }
+  .code-submit {
+    background:linear-gradient(135deg,var(--rose),var(--pink));
+    border:none; color:#fff; cursor:pointer;
+    padding:12px 36px; border-radius:30px;
+    font-family:'Montserrat',sans-serif;
+    font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;
+    transition:opacity 0.2s;
+  }
+  .code-submit:hover { opacity:0.88; }
+  .code-modal-close {
+    position:absolute;top:14px;right:18px;
+    background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;
+  }
+
+  /* ── ADMIN PANEL ── */
+  .admin-overlay {
+    display:none; position:fixed; inset:0; z-index:4000;
+    background:rgba(0,0,0,0.95);
+    backdrop-filter:blur(16px);
+    overflow-y:auto;
+    padding:24px;
+  }
+  .admin-overlay.open { display:block; }
+  .admin-panel {
+    max-width:800px; margin:0 auto;
+    background:#0f0f0f;
+    border:1px solid rgba(232,160,176,0.2);
+    border-radius:24px;
+    padding:36px 32px;
+    position:relative;
+  }
+  .admin-panel h2 {
+    font-family:'Great Vibes',cursive;
+    font-size:2.4rem;
+    color:var(--pink);
+    margin-bottom:6px;
+  }
+  .admin-panel .admin-sub {
+    font-size:0.8rem;
+    color:var(--muted);
+    font-style:italic;
+    margin-bottom:28px;
+    font-family:'Montserrat',sans-serif;
+    letter-spacing:1px;
+  }
+  .admin-close-btn {
+    position:absolute;top:20px;right:24px;
+    background:none;border:1px solid rgba(232,160,176,0.2);
+    color:var(--muted);cursor:pointer;padding:6px 14px;
+    border-radius:20px;font-family:'Montserrat',sans-serif;font-size:0.7rem;
+    letter-spacing:1px;text-transform:uppercase;
+    transition:color 0.2s,border-color 0.2s;
+  }
+  .admin-close-btn:hover { color:#fff; border-color:var(--rose); }
+  .booking-table { width:100%; border-collapse:collapse; }
+  .booking-table th {
+    text-align:left;
+    font-family:'Montserrat',sans-serif;
+    font-size:0.6rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--rose);
+    padding:10px 12px;
+    border-bottom:1px solid rgba(232,160,176,0.12);
+  }
+  .booking-table td {
+    padding:12px;
+    font-size:0.92rem;
+    color:rgba(255,255,255,0.78);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+  }
+  .booking-table tr:last-child td { border:none; }
+  .no-bookings {
+    text-align:center;padding:40px;
+    color:var(--muted);font-style:italic;
+  }
+  .admin-clear-btn {
+    margin-top:20px;
+    background:transparent;border:1px solid rgba(232,160,176,0.2);
+    color:var(--muted);cursor:pointer;padding:8px 20px;
+    border-radius:20px;font-family:'Montserrat',sans-serif;
+    font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;
+    transition:all 0.2s;
+  }
+  .admin-clear-btn:hover { color:#e87a8a;border-color:#e87a8a; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:var(--black); }
+  ::-webkit-scrollbar-thumb { background:rgba(232,160,176,0.3); border-radius:3px; }
+
+  @media(max-width:600px){
+    .modal { padding:28px 20px; }
+    .admin-panel { padding:24px 18px; }
+    .booking-table th, .booking-table td { padding:8px; font-size:0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING LASHES -->
+<div class="lash-bg" id="lashBg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Minks by Lina</div>
+  <div class="nav-right">
+    <button class="nav-book-btn" onclick="openBooking()">Book Now</button>
+    <button class="hamburger" onclick="openCodeModal()" title="Admin Access">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="https://i.imgur.com/Ano65PQ.jpeg" alt="Carolina's Beauty Boutique Logo" class="hero-logo"
+    onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' viewBox=\'0 0 300 300\'><circle cx=\'150\' cy=\'150\' r=\'148\' fill=\'%23301020\' stroke=\'%23c9687e\' stroke-width=\'2\'/><text x=\'150\' y=\'140\' text-anchor=\'middle\' font-family=\'serif\' font-size=\'22\' fill=\'%23e8a0b0\'>Carolina\'s</text><text x=\'150\' y=\'170\' text-anchor=\'middle\' font-family=\'serif\' font-size=\'28\' fill=\'white\'>Beauty</text><text x=\'150\' y=\'200\' text-anchor=\'middle\' font-family=\'serif\' font-size=\'28\' fill=\'white\'>Boutique</text></svg>'">
+  <p class="hero-eyebrow">Carolina's Beauty Boutique · Downtown San Diego</p>
+  <h1 class="hero-name">Your Artist is Lina</h1>
+  <p class="hero-sub">Lash Extensions & Beauty Services</p>
+  <p class="hero-tagline">Every set, a work of art. Every client, a queen.</p>
+  <button class="hero-cta" onclick="openBooking()">Book Your Appointment</button>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="section-inner">
+    <h2 class="section-title">About Me</h2>
+    <div class="section-rule"></div>
+    <div class="about-card">
+      <p>Hi love, I'm Lina — your lash artist at Carolina's Beauty Boutique in downtown San Diego. I specialize in lash extensions that feel as good as they look. Whether you want something natural and effortless or bold and dramatic, I'm here to give you lashes that make you feel like the most beautiful version of yourself. New clients are always welcomed — come through and let's transform your look together. 💕</p>
+      <p class="about-handle">@minkssbylina</p>
+      <div class="about-badges">
+        <span class="badge">Lash Extensions</span>
+        <span class="badge">Beauty & Cosmetics</span>
+        <span class="badge">Personal Hair Care</span>
+        <span class="badge">Downtown San Diego</span>
+        <span class="badge">New Clients Welcome</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="section-inner">
+    <h2 class="section-title">Services & Pricing</h2>
+    <div class="section-rule"></div>
+    <div class="pricing-grid">
+      <!-- Full Sets -->
+      <div class="pricing-card">
+        <div class="pricing-cat">✦ Full Sets</div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Classic, 2D, 3D</span>
+          <span class="pricing-item-price">$65</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Wet Set / Hybrid</span>
+          <span class="pricing-item-price">$70</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Light Volume</span>
+          <span class="pricing-item-price">$75</span>
+        </div>
+        <button class="book-service-btn" onclick="openBookingWithService('Classic / Hybrid / Light Volume')">Book This</button>
+      </div>
+      <!-- Volume -->
+      <div class="pricing-card">
+        <div class="pricing-cat">✦ Volume</div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Volume</span>
+          <span class="pricing-item-price">$80</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Mega Volume</span>
+          <span class="pricing-item-price">$90</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Wispy</span>
+          <span class="pricing-item-price">$100</span>
+        </div>
+        <button class="book-service-btn" onclick="openBookingWithService('Volume / Mega Volume / Wispy')">Book This</button>
+      </div>
+      <!-- Add-ons -->
+      <div class="pricing-card">
+        <div class="pricing-cat">✦ Add-ons & Extras</div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Refill (2–3 Weeks)</span>
+          <span class="pricing-item-price">$55</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Lower Lashes</span>
+          <span class="pricing-item-price">$30</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-item-name">Removal</span>
+          <span class="pricing-item-price">$15</span>
+        </div>
+        <button class="book-service-btn" onclick="openBookingWithService('Refill / Removal / Lower Lashes')">Book This</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MY WORK GALLERY -->
+<section class="gallery-section">
+  <div class="section-inner">
+    <h2 class="section-title">My Girls</h2>
+    <div class="section-rule"></div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- images loaded by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT BANNER -->
+<div class="payment-banner">
+  <div class="payment-inner">
+    <div class="payment-item">
+      <span>💵</span>
+      <span class="payment-label">Cash</span>
+      <span class="payment-value">Accepted</span>
+    </div>
+    <div class="payment-item">
+      <span>💚</span>
+      <span class="payment-label">Cash App</span>
+      <span class="payment-value">Accepted</span>
+    </div>
+    <div class="payment-item">
+      <span>💜</span>
+      <span class="payment-label">Zelle</span>
+      <span class="payment-value">Accepted</span>
+    </div>
+    <div class="payment-item">
+      <span>💰</span>
+      <span class="payment-label">Deposit</span>
+      <span class="payment-value">$15 to book</span>
+    </div>
+    <div class="payment-item">
+      <span>🌸</span>
+      <span class="payment-label">New Clients</span>
+      <span class="payment-value">Welcome!</span>
+    </div>
+  </div>
+</div>
+
+<!-- POLICIES -->
+<section class="policy-section">
+  <div class="section-inner">
+    <h2 class="section-title">Booking Policies</h2>
+    <div class="section-rule"></div>
+    <div class="policy-grid">
+      <div class="policy-card">
+        <div class="policy-icon">📌</div>
+        <div class="policy-title">Deposit Policy</div>
+        <p class="policy-text">A $15 non-refundable deposit is required to confirm your spot. This deposit will be credited toward your treatment — it simply secures your appointment time.</p>
+      </div>
+      <div class="policy-card">
+        <div class="policy-icon">⏰</div>
+        <div class="policy-title">Cancellations</div>
+        <p class="policy-text">Need to reschedule or cancel? Please let me know at least 24 hours in advance. Cancellations made within 24 hours will result in the loss of the deposit.</p>
+      </div>
+      <div class="policy-card">
+        <div class="policy-icon">💕</div>
+        <div class="policy-title">A Small Business Note</div>
+        <p class="policy-text">Helping me protect my time means I can keep delivering the relaxed, high-quality experience you expect. I truly appreciate your support for my small business! 💖</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFTERCARE -->
+<section class="aftercare-section">
+  <div class="section-inner">
+    <h2 class="section-title">Lash Aftercare</h2>
+    <div class="section-rule"></div>
+    <div class="aftercare-grid">
+      <div class="aftercare-card">
+        <div class="aftercare-icon">💧</div>
+        <div class="aftercare-title">Stay Dry (24 hrs)</div>
+        <p class="aftercare-text">Avoid getting your lashes wet for the first 24 hours after your appointment. This allows the adhesive to fully cure.</p>
+      </div>
+      <div class="aftercare-card">
+        <div class="aftercare-icon">🚿</div>
+        <div class="aftercare-title">Gentle Cleansing</div>
+        <p class="aftercare-text">After 24 hours, cleanse lashes gently with an oil-free lash cleanser. Clean lashes last longer and reduce the risk of infection.</p>
+      </div>
+      <div class="aftercare-card">
+        <div class="aftercare-icon">🛢️</div>
+        <div class="aftercare-title">Avoid Oils</div>
+        <p class="aftercare-text">Oil-based makeup removers and skincare products break down the adhesive. Always use oil-free products around the eye area.</p>
+      </div>
+      <div class="aftercare-card">
+        <div class="aftercare-icon">🪄</div>
+        <div class="aftercare-title">Brush Daily</div>
+        <p class="aftercare-text">Use a clean spoolie to gently brush your lashes each morning. This keeps them neat, fluffy, and looking fresh.</p>
+      </div>
+      <div class="aftercare-card">
+        <div class="aftercare-icon">😴</div>
+        <div class="aftercare-title">Sleep Smart</div>
+        <p class="aftercare-text">Try to sleep on your back or use a silk pillowcase to avoid crushing your lashes overnight and preserve their shape.</p>
+      </div>
+      <div class="aftercare-card">
+        <div class="aftercare-icon">🚫</div>
+        <div class="aftercare-title">Don't Pick or Pull</div>
+        <p class="aftercare-text">Never pull or pick at your lash extensions — this can damage your natural lashes. Come in for a professional removal instead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="section-inner">
+    <h2 class="section-title">What My Girls Say</h2>
+    <div class="section-rule"></div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Lina is absolutely amazing! My lashes have never looked this good. She's so detail-oriented and makes sure you're comfortable the whole time. I won't go anywhere else!</p>
+        <div class="review-name">— Jasmine R.</div>
+      </div>
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">I was a new client and she made me feel so welcome. The wispy set she did on me was everything. Lasted so long too. Already booked my refill!</p>
+        <div class="review-name">— Sofia M.</div>
+      </div>
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Best lash artist in San Diego, hands down. The mega volume she did was stunning and so light. My friends all asked who did my lashes. Sending everyone to Lina!</p>
+        <div class="review-name">— Brianna K.</div>
+      </div>
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">The vibe, the quality, the price — unmatched. Lina is so talented and sweet. My lashes look insane every single time. Book her while you still can!</p>
+        <div class="review-name">— Valentina C.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <h2 class="bottom-cta-title">Ready for Your Dream Lashes?</h2>
+  <p>Book your appointment today — slots fill up fast 💕</p>
+  <button class="hero-cta" onclick="openBooking()">Book My Appointment</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Minks by Lina</div>
+  <div class="footer-handle">@minkssbylina · Downtown San Diego</div>
+  <div class="footer-note">© 2025 Carolina's Beauty Boutique · All rights reserved</div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBooking()">✕</button>
+    <div id="bookingFormWrap">
+      <h2 class="modal-title">Book Appointment</h2>
+      <p class="modal-sub">Fill in your details & we'll confirm your spot 💕</p>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="bName" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="bPhone" placeholder="(555) 000-0000">
+      </div>
+      <div class="form-group">
+        <label>Service</label>
+        <select id="bService">
+          <option value="">— Select a service —</option>
+          <option>Classic, 2D, 3D — $65</option>
+          <option>Wet Set / Hybrid — $70</option>
+          <option>Light Volume — $75</option>
+          <option>Volume — $80</option>
+          <option>Mega Volume — $90</option>
+          <option>Wispy — $100</option>
+          <option>Refill (2–3 Weeks) — $55</option>
+          <option>Lower Lashes — $30</option>
+          <option>Removal — $15</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Preferred Date</label>
+        <input type="date" id="bDate">
+      </div>
+      <div class="form-group">
+        <label>Preferred Time</label>
+        <input type="time" id="bTime">
+      </div>
+      <button class="submit-btn" onclick="submitBooking()">Save My Appointment</button>
+      <p class="deposit-note">$15 non-refundable deposit required to confirm. Cash, Cash App & Zelle accepted.</p>
+    </div>
+    <div class="success-msg" id="bookingSuccess">
+      <div class="check">💕</div>
+      <h3>You're Booked!</h3>
+      <p>Lina will reach out to confirm your appointment and deposit details. Can't wait to see you! 🌸</p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN CODE MODAL -->
+<div class="code-modal-overlay" id="codeModal">
+  <div class="code-modal">
+    <button class="code-modal-close" onclick="closeCodeModal()">✕</button>
+    <h2>Admin Access</h2>
+    <p>Enter your 4-digit access code</p>
+    <div class="code-inputs">
+      <input type="password" maxlength="1" id="c0" oninput="codeInput(0)" inputmode="numeric">
+      <input type="password" maxlength="1" id="c1" oninput="codeInput(1)" inputmode="numeric">
+      <input type="password" maxlength="1" id="c2" oninput="codeInput(2)" inputmode="numeric">
+      <input type="password" maxlength="1" id="c3" oninput="codeInput(3)" inputmode="numeric">
+    </div>
+    <div class="code-error" id="codeError">Incorrect code. Please try again.</div>
+    <button class="code-submit" onclick="checkCode()">Enter</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminPanel">
+  <div class="admin-panel">
+    <button class="admin-close-btn" onclick="closeAdmin()">Close</button>
+    <h2>Admin Dashboard</h2>
+    <p class="admin-sub">Carolina's Beauty Boutique · Bookings</p>
+    <div id="bookingsContainer"></div>
+    <button class="admin-clear-btn" onclick="clearBookings()">Clear All Bookings</button>
+  </div>
+</div>
+
+<script>
+  // ── LASH PARTICLES ──
+  const lashBg = document.getElementById('lashBg');
+  const symbols = ['〜','✦','˖','⟡','⌒','‿','˘'];
+  for(let i=0;i<28;i++){
+    const el = document.createElement('div');
+    el.className='lash-particle';
+    el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left = Math.random()*100+'vw';
+    el.style.fontSize = (14+Math.random()*18)+'px';
+    el.style.animationDuration = (18+Math.random()*28)+'s';
+    el.style.animationDelay = -(Math.random()*30)+'s';
+    lashBg.appendChild(el);
+  }
+
+  // ── GALLERY ──
+  const galleryImgs = [
+    'https://i.imgur.com/kqkhMvL.jpeg',
+    'https://i.imgur.com/84h4RJd.jpeg',
+    'https://i.imgur.com/n3Lubhd.jpeg',
+    'https://i.imgur.com/VEnayB2.jpeg',
+    'https://i.imgur.com/FTGGSdO.jpeg',
+    'https://i.imgur.com/Ano65PQ.jpeg'
+  ];
+  const labels = ['Classic Set','Hybrid Glam','Volume Drama','Wispy Lashes','Mega Volume','Natural Beauty'];
+  const grid = document.getElementById('galleryGrid');
+  galleryImgs.forEach((src,i)=>{
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.innerHTML = `<img src="${src}" alt="${labels[i]}" loading="lazy"><div class="gallery-overlay"><span>${labels[i]}</span></div>`;
+    grid.appendChild(div);
+  });
+
+  // ── BOOKINGS STORAGE (in-memory) ──
+  let bookings = [];
+
+  // ── BOOKING MODAL ──
+  function openBooking(){
+    document.getElementById('bookingModal').classList.add('open');
+    document.getElementById('bookingFormWrap').style.display='block';
+    document.getElementById('bookingSuccess').style.display='none';
+  }
+  function openBookingWithService(svc){
+    openBooking();
+    const sel = document.getElementById('bService');
+    for(let o of sel.options){ if(o.value.includes(svc.split(' ')[0])){ sel.value=o.value; break; } }
+  }
+  function closeBooking(){
+    document.getElementById('bookingModal').classList.remove('open');
+    document.getElementById('bName').value='';
+    document.getElementById('bPhone').value='';
+    document.getElementById('bService').value='';
+    document.getElementById('bDate').value='';
+    document.getElementById('bTime').value='';
+  }
+  function submitBooking(){
+    const name = document.getElementById('bName').value.trim();
+    const phone = document.getElementById('bPhone').value.trim();
+    const service = document.getElementById('bService').value;
+    const date = document.getElementById('bDate').value;
+    const time = document.getElementById('bTime').value;
+    if(!name||!phone||!service||!date||!time){
+      alert('Please fill in all fields 💕');
+      return;
+    }
+    bookings.push({ name, phone, service, date, time, ts: new Date().toLocaleString() });
+    document.getElementById('bookingFormWrap').style.display='none';
+    document.getElementById('bookingSuccess').style.display='block';
+    setTimeout(closeBooking, 3000);
+  }
+
+  // ── ADMIN CODE ──
+  const ADMIN_CODE = '1234';
+  function openCodeModal(){
+    document.getElementById('codeModal').classList.add('open');
+    document.getElementById('codeError').style.display='none';
+    ['c0','c1','c2','c3'].forEach(id=>{ document.getElementById(id).value=''; });
+    setTimeout(()=>document.getElementById('c0').focus(), 100);
+  }
+  function closeCodeModal(){
+    document.getElementById('codeModal').classList.remove('open');
+  }
+  function codeInput(idx){
+    const val = document.getElementById('c'+idx).value;
+    if(val && idx<3) document.getElementById('c'+(idx+1)).focus();
+    if(idx===3 && val) checkCode();
+  }
+  function checkCode(){
+    const code = ['c0','c1','c2','c3'].map(id=>document.getElementById(id).value).join('');
+    if(code === ADMIN_CODE){
+      closeCodeModal();
+      openAdmin();
+    } else {
+      document.getElementById('codeError').style.display='block';
+      ['c0','c1','c2','c3'].forEach(id=>{ document.getElementById(id).value=''; });
+      document.getElementById('c0').focus();
+    }
+  }
+
+  // ── ADMIN PANEL ──
+  function openAdmin(){
+    const container = document.getElementById('bookingsContainer');
+    if(bookings.length===0){
+      container.innerHTML='<div class="no-bookings">No bookings yet. Once clients book, they\'ll appear here. 💕</div>';
+    } else {
+      let html = '<table class="booking-table"><thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>Date</th><th>Time</th></tr></thead><tbody>';
+      bookings.forEach(b=>{
+        html+=`<tr><td>${b.name}</td><td>${b.phone}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td></tr>`;
+      });
+      html+='</tbody></table>';
+      container.innerHTML=html;
+    }
+    document.getElementById('adminPanel').classList.add('open');
+  }
+  function closeAdmin(){
+    document.getElementById('adminPanel').classList.remove('open');
+  }
+  function clearBookings(){
+    if(confirm('Clear all bookings?')){ bookings=[]; openAdmin(); }
+  }
+
+  // close modals on overlay click
+  document.getElementById('bookingModal').addEventListener('click',function(e){ if(e.target===this) closeBooking(); });
+  document.getElementById('codeModal').addEventListener('click',function(e){ if(e.target===this) closeCodeModal(); });
+
+  // min date = today
+  document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
