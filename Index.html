@@ -1158,6 +1158,10 @@ transition: background 0.2s, color 0.2s;
         </select>
       </div>
       <div class="form-group">
+        <label>Instagram Username (optional)</label>
+        <input type="text" id="bInstagram" placeholder="@yourusername">
+      </div>
+      <div class="form-group">
         <label>Select Date</label>
         <input type="date" id="bDate" onchange="renderTimeOptions()">
       </div>
@@ -1396,6 +1400,7 @@ transition: background 0.2s, color 0.2s;
     document.getElementById('bookingModal').classList.remove('open');
     document.getElementById('bName').value='';
     document.getElementById('bPhone').value='';
+    document.getElementById('bInstagram').value='';
     document.getElementById('bService').value='';
     document.getElementById('bDate').value='';
     document.getElementById('bTime').innerHTML='<option value="">— Pick a date first —</option>';
@@ -1425,6 +1430,7 @@ transition: background 0.2s, color 0.2s;
   function submitBooking(){
     const name = document.getElementById('bName').value.trim();
     const phone = document.getElementById('bPhone').value.trim();
+    const instagram = document.getElementById('bInstagram').value.trim();
     const service = document.getElementById('bService').value;
     const date = document.getElementById('bDate').value;
     const time = document.getElementById('bTime').value;
@@ -1446,7 +1452,7 @@ transition: background 0.2s, color 0.2s;
     // save the booking to the shared database — admin will see it instantly on any device
     const newRef = db.ref('bookings').push();
     currentBookingKey = newRef.key;
-    newRef.set({ name, phone, service, date, time, ts: new Date().toLocaleString(), depositPaid: false });
+    newRef.set({ name, phone, instagram, service, date, time, ts: new Date().toLocaleString(), depositPaid: false });
 
     document.getElementById('bookingFormWrap').style.display='none';
     document.getElementById('bookingSuccess').style.display='block';
@@ -1526,14 +1532,14 @@ transition: background 0.2s, color 0.2s;
       return;
     }
     const sorted = [...bookings].sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
-    let html = '<table class="booking-table"><thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>Date</th><th>Time</th><th>Deposit</th><th></th></tr></thead><tbody>';
+    let html = '<table class="booking-table"><thead><tr><th>Name</th><th>Phone</th><th>Instagram</th><th>Service</th><th>Date</th><th>Time</th><th>Deposit</th><th></th></tr></thead><tbody>';
     sorted.forEach((b,i)=>{
       const paid = b.depositPaid === true;
       const badge = paid
         ? `<span style="background:rgba(80,200,120,0.18); color:#6fe097; border:1px solid rgba(80,200,120,0.4); padding:4px 10px; border-radius:20px; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; white-space:nowrap;">✓ Paid</span>`
         : `<span style="background:rgba(232,160,176,0.18); color:var(--pink); border:1px solid rgba(232,160,176,0.4); padding:4px 10px; border-radius:20px; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; white-space:nowrap;">⏳ Pending</span>`;
       const rowStyle = paid ? '' : ' style="background:rgba(232,160,176,0.05);"';
-      html+=`<tr${rowStyle}><td>${b.name}</td><td>${b.phone}</td><td>${b.service}</td><td>${b.date}</td><td>${fmtSlot(b.time)}</td><td>${badge}</td><td><button class="admin-clear-btn" style="margin:0;padding:4px 10px;" onclick="cancelBooking('${b._key}','${b.date}','${b.time}')">Cancel</button></td></tr>`;
+      html+=`<tr${rowStyle}><td>${b.name}</td><td>${b.phone}</td><td>${b.instagram ? b.instagram : '—'}</td><td>${b.service}</td><td>${b.date}</td><td>${fmtSlot(b.time)}</td><td>${badge}</td><td><button class="admin-clear-btn" style="margin:0;padding:4px 10px;" onclick="cancelBooking('${b._key}','${b.date}','${b.time}')">Cancel</button></td></tr>`;
     });
     html+='</tbody></table>';
     container.innerHTML=html;
