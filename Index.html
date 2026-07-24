@@ -1454,6 +1454,16 @@ transition: background 0.2s, color 0.2s;
     currentBookingKey = newRef.key;
     newRef.set({ name, phone, instagram, service, date, time, ts: new Date().toLocaleString(), depositPaid: false });
 
+    // push a free instant phone notification via ntfy.sh (no server, no cost)
+    // install the "ntfy" app (iOS/Android) and subscribe to the topic below
+    try {
+      fetch('https://ntfy.sh/minkssbylina-bookings-x7q2', {
+        method: 'POST',
+        headers: { 'Title': 'New Booking 💕', 'Priority': 'high', 'Tags': 'sparkles' },
+        body: `${name} — ${service}\n${date} · ${fmtSlot(time)}\nPhone: ${phone}${instagram ? '\nIG: '+instagram : ''}`
+      });
+    } catch(e) {}
+
     document.getElementById('bookingFormWrap').style.display='none';
     document.getElementById('bookingSuccess').style.display='block';
   }
